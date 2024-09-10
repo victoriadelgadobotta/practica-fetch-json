@@ -19,3 +19,16 @@ function showData(dataArray) {
 }
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
+fetch(DATA_URL)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Ups! Hubo un problema con la red :( de momento no podemos mostrar el contenido, vuelve pronto!');
+    }
+    return response.json();
+  })
+  .then(data => {
+    showData(data.students);
+  })
+  .catch(error => {
+    console.error('Ups! No pudimos cargar los datos :( Recarga la pagina y si el error continua consulta a un profesional.', error);
+  });
